@@ -1,0 +1,41 @@
+// Copyflow data model.
+// SQLite for local development — swap `provider`/`DATABASE_URL` to Postgres for
+// production (Vercel can't persist SQLite). No model changes needed.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id               String       @id @default(cuid())
+  email            String       @unique
+  passwordHash     String
+  plan             String       @default("free") // "free" | "pro"
+  dailyCount       Int          @default(0)
+  dailyResetAt     DateTime     @default(now())
+  stripeCustomerId String?
+  stripeSubId      String?
+  emailVerified     Boolean   @default(false)
+  verifyToken       String?   @unique
+  verifyTokenExpiry DateTime?
+  createdAt        DateTime     @default(now())
+  generations      Generation[]
+}
+
+model Generation {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tool      String
+  input     String
+  output    String // JSON-encoded array of variation strings
+  createdAt DateTime @default(now())
+
+  @@index([userId, createdAt])
+}
