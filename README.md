@@ -2,6 +2,10 @@
 
 Copyflow is a full-stack AI writing workspace that turns structured inputs into marketing and professional copy. It combines focused writing tools with authentication, usage limits, generation history, email verification, and optional subscription billing.
 
+**Live application:** [copyflow-pi.vercel.app](https://copyflow-pi.vercel.app/)
+
+![Copyflow homepage](docs/screenshots/home.png)
+
 ## What it demonstrates
 
 - Production-style Next.js application architecture with server-side API routes
@@ -20,6 +24,12 @@ Copyflow is a full-stack AI writing workspace that turns structured inputs into 
 - Continue in demo mode when no AI provider is configured
 - Create an account, verify an email address, and review generation history
 - Track daily usage and upgrade to a paid plan
+
+## Product walkthrough
+
+| Writing tools | Instagram caption generator |
+| --- | --- |
+| [![Copyflow writing tools](docs/screenshots/tools.png)](https://copyflow-pi.vercel.app/tools) | [![Instagram caption generator](docs/screenshots/instagram-caption-generator.png)](https://copyflow-pi.vercel.app/tools/instagram-caption-generator) |
 
 ## Architecture
 
